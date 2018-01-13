@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
-import Beacons from 'react-native-beacons-manager';
-import moment from 'moment';
+import { Text, View, ListView, FlatList, DeviceEventEmitter } from 'react-native';
+import Beacons  from 'react-native-beacons-manager';
+import moment   from 'moment';
 
 const TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
 
@@ -9,12 +9,12 @@ export default class BeaconMonitoringAndRanging extends Component {
   constructor(props) {
     super(props);
 
-    // will be set as a reference to "beaconsDidRange" event:
-    beaconsDidRangeEvent = null;
     // will be set as a reference to "regionDidEnter" event:
     regionDidEnterEvent = null;
-    // will be set as a reference to "beaconsDidRange" event:
-    beaconsDidRangeEvent = null;
+    // will be set as a reference to "regionDidExit" event:
+    regionDidExitEvent = null;
+    // will be set as a reference to "authorizationStatusDidChange" event:
+    authStateDidRangeEvent = null;
 
     this.state = {
       // region information
@@ -33,25 +33,34 @@ export default class BeaconMonitoringAndRanging extends Component {
     // ONLY non component state aware here in componentWillMount
     //
 
+    // OPTIONAL: listen to authorization change
+    this.authStateDidRangeEvent = DeviceEventEmitter.addListener(
+      'authorizationStatusDidChange',
+      (info) => console.log('authorizationStatusDidChange: ', info)
+    );
+
+    // MANDATORY: you have to request ALWAYS Authorization (not only when in use) when monitoring
+    // you also have to add "Privacy - Location Always Usage Description" in your "Info.plist" file
+    // otherwise monitoring won't work
+    Beacons.requestAlwaysAuthorization();
+    Beacons.shouldDropEmptyRanges(true);
+
     // Define a region which can be identifier + uuid,
     // identifier + uuid + major or identifier + uuid + major + minor
-    // (minor and major properties are 'OPTIONAL' numbers)
+    // (minor and major properties are numbers)
     const region = { identifier, uuid };
-
-    // start iBeacon detection (later will add Eddystone and Nordic Semiconductor beacons)
-    Beacons.detectIBeacons();
-
-    // Monitor beacons inside the region
+    // Monitor for beacons inside the region
     Beacons
-      .startMonitoringForRegion(region)
-      .then(() => console.log('Beacons monitoring started succesfully'))
-      .catch(error => console.log(`Beacons monitoring not started, error: ${error}`));
-
-    // Range beacons inside the region
+    .startMonitoringForRegion(region) // or like  < v1.0.7: .startRangingBeaconsInRegion(identifier, uuid)
+    .then(() => console.log('Beacons monitoring started succesfully'))
+    .catch(error => console.log(`Beacons monitoring not started, error: ${error}`));
+    // Range for beacons inside the region
     Beacons
-      .startRangingBeaconsInRegion(identifier, uuid)
-      .then(() => console.log('Beacons ranging started succesfully'))
-      .catch(error => console.log(`Beacons ranging not started, error: ${error}`));
+    .startRangingBeaconsInRegion(region) // or like  < v1.0.7: .startRangingBeaconsInRegion(identifier, uuid)
+    .then(() => console.log('Beacons ranging started succesfully'))
+    .catch(error => console.log(`Beacons ranging not started, error: ${error}`));
+    // update location to ba able to monitor:
+    Beacons.startUpdatingLocation();
   }
 
   componentDidMount() {
@@ -59,22 +68,22 @@ export default class BeaconMonitoringAndRanging extends Component {
     // component state aware here - attach events
     //
 
-    // Ranging:
+    // Ranging event
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        console.log('beaconsDidRange data: ', data);
+      //  console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
     );
 
-    // monitoring:
-    this.beaconsDidEnterEvent = DeviceEventEmitter.addListener(
+    // monitoring events
+    this.regionDidEnterEvent = DeviceEventEmitter.addListener(
       'regionDidEnter',
-      ({ identifier, uuid, minor, major }) => {
-        console.log('monitoring - regionDidEnter data: ', { identifier, uuid, minor, major });
+      (data) => {
+        console.log('monitoring - regionDidEnter data: ', data);
         const time = moment().format(TIME_FORMAT);
-        this.setState({ regionEnterDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier, uuid, minor, major, time }]) });
+        this.setState({ regionEnterDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier:data.identifier, uuid:data.uuid, minor:data.minor, major:data.major, time }]) });
       }
     );
 
@@ -89,26 +98,27 @@ export default class BeaconMonitoringAndRanging extends Component {
   }
 
   componentWillUnmount() {
-    const { uuid, identifier } = this.state;
+    const { identifier, uuid } = this.state;
     const region = { identifier, uuid };
-
-    // stop ranging beacons:
-    Beacons
-    .stopRangingBeaconsInRegion(identifier, uuid)
-    .then(() => console.log('Beacons ranging stopped succesfully'))
-    .catch(error => console.log(`Beacons ranging not stopped, error: ${error}`));
-
     // stop monitoring beacons:
     Beacons
     .stopMonitoringForRegion(region)
     .then(() => console.log('Beacons monitoring stopped succesfully'))
     .catch(error => console.log(`Beacons monitoring not stopped, error: ${error}`));
-
-    // remove ranging event we registered at componentDidMount
-    this.beaconsDidRangeEvent.remove();
-    // remove beacons events we registered at componentDidMount
+    // stop ranging beacons:
+    Beacons
+    .stopRangingBeaconsInRegion(region)
+    .then(() => console.log('Beacons ranging stopped succesfully'))
+    .catch(error => console.log(`Beacons ranging not stopped, error: ${error}`));
+    // stop updating locationManager:
+    Beacons.stopUpdatingLocation();
+    // remove auth state event we registered at componentDidMount:
+    this.authStateDidRangeEvent.remove();
+    // remove monitoring events we registered at componentDidMount
     this.regionDidEnterEvent.remove();
     this.regionDidExitEvent.remove();
+    // remove ranging event we registered at componentDidMount
+    this.beaconsDidRangeEvent.remove();
   }
 
   render() {
@@ -119,6 +129,10 @@ export default class BeaconMonitoringAndRanging extends Component {
         <Text>
           ranging beacons in the area:
         </Text>
+        <FlatList
+          data={this.state.rangingDataSource}
+          renderItem={({item}) => <Text>{item}</Text>}
+        />
         <ListView
           dataSource={ rangingDataSource }
           enableEmptySections={ true }
@@ -145,7 +159,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     );
   }
 
-  renderRangingRow = (rowData) => {
+  renderRangingRow(rowData) {
     return (
       <View>
         <Text>
@@ -169,7 +183,6 @@ export default class BeaconMonitoringAndRanging extends Component {
       </View>
     );
   }
-
 
   renderMonitoringEnterRow = ({ identifier, uuid, minor, major, time }) => {
     return (
