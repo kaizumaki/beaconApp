@@ -39,6 +39,7 @@
 		4491FC594C364A248112F8D4 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CA939BCAAF4B96928F635C /* Roboto.ttf */; };
 		490ECDAFCEF443B5891AEC06 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 524001668363444BA2484383 /* Roboto_medium.ttf */; };
 		4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		4AE4315D200A6C88000BAEBC /* libRNiBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFE6F0F2008F70E0000A8F6 /* libRNiBeacon.a */; };
 		4CFAA308B667427E808D2DE5 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2181ABD62049A4A15B6532 /* Foundation.ttf */; };
 		57AC8393CD694FA88A1DD009 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 503F6DB5E9EA44F793564F81 /* Octicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -49,7 +50,6 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		D03CBF2F571449C0A94ADD58 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB7C35A918D941F3B91D55BA /* Ionicons.ttf */; };
 		F6A59AAD03AA4CB1AD0A6CEE /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8308E59184B838DD27378 /* EvilIcons.ttf */; };
-		FB8238B185134B8482B23542 /* libRNiBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5193F2F1A45B4DFC81FEC208 /* libRNiBeacon.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +393,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AE4315D200A6C88000BAEBC /* libRNiBeacon.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -405,7 +406,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				FB8238B185134B8482B23542 /* libRNiBeacon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,8 +1342,9 @@
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
 				);
 				INFOPLIST_FILE = beaconApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1351,6 +1352,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.kaizumaki.beaconApp;
 				PRODUCT_NAME = beaconApp;
+				SDKROOT = iphoneos11.2;
+				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1360,14 +1364,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 56PT67EH6S;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
 				);
 				INFOPLIST_FILE = beaconApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1375,6 +1381,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.kaizumaki.beaconApp;
 				PRODUCT_NAME = beaconApp;
+				SDKROOT = iphoneos11.2;
+				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
