@@ -38,7 +38,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* beaconAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* beaconAppTests.m */; };
 		4491FC594C364A248112F8D4 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CA939BCAAF4B96928F635C /* Roboto.ttf */; };
 		490ECDAFCEF443B5891AEC06 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 524001668363444BA2484383 /* Roboto_medium.ttf */; };
-		4A419DA22009D721002A9A30 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A419D7B2009D721002A9A30 /* CoreLocation.framework */; };
 		4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		4CFAA308B667427E808D2DE5 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D2181ABD62049A4A15B6532 /* Foundation.ttf */; };
 		57AC8393CD694FA88A1DD009 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 503F6DB5E9EA44F793564F81 /* Octicons.ttf */; };
@@ -394,7 +393,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A419DA22009D721002A9A30 /* CoreLocation.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,

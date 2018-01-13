@@ -35,8 +35,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ビーコンを受信します</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>アプリの起動中のみビーコンを受信します</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>さしすせそ</string>
+	<string>常にビーコンを受信します</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
