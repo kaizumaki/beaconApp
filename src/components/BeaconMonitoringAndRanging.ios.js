@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, FlatList, DeviceEventEmitter } from 'react-native';
+import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
 import Beacons  from 'react-native-beacons-manager';
 import moment   from 'moment';
 
@@ -19,7 +19,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.state = {
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
-      identifier: 'some id',
+      identifier: 'kaizumaki_nefry_beacon',
 
       rangingDataSource    : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
@@ -72,7 +72,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-      //  console.log('beaconsDidRange data: ', data);
+        console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
     );
@@ -81,7 +81,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidEnterEvent = DeviceEventEmitter.addListener(
       'regionDidEnter',
       (data) => {
-        console.log('monitoring - regionDidEnter data: ', data);
+        alert('monitoring - regionDidEnter data: ', data);
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionEnterDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier:data.identifier, uuid:data.uuid, minor:data.minor, major:data.major, time }]) });
       }
@@ -90,7 +90,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidExitEvent = DeviceEventEmitter.addListener(
       'regionDidExit',
       ({ identifier, uuid, minor, major }) => {
-        console.log('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
+        alert('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionExitDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier, uuid, minor, major, time }]) });
       }
@@ -129,10 +129,6 @@ export default class BeaconMonitoringAndRanging extends Component {
         <Text>
           ranging beacons in the area:
         </Text>
-        <FlatList
-          data={this.state.rangingDataSource}
-          renderItem={({item}) => <Text>{item}</Text>}
-        />
         <ListView
           dataSource={ rangingDataSource }
           enableEmptySections={ true }
