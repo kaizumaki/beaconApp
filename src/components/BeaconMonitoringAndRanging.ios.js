@@ -3,7 +3,7 @@ import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
 import Beacons  from 'react-native-beacons-manager';
 import moment   from 'moment';
 
-const TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
+const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
 export default class BeaconMonitoringAndRanging extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.state = {
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
-      identifier: 'kaizumaki_nefry_beacon',
+      identifier: 'Kaizumaki Nefry Beacon',
 
       rangingDataSource    : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
@@ -81,7 +81,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidEnterEvent = DeviceEventEmitter.addListener(
       'regionDidEnter',
       (data) => {
-        alert('monitoring - regionDidEnter data: ', data);
+        console.log('monitoring - regionDidEnter data: ', data);
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionEnterDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier:data.identifier, uuid:data.uuid, minor:data.minor, major:data.major, time }]) });
       }
@@ -90,7 +90,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidExitEvent = DeviceEventEmitter.addListener(
       'regionDidExit',
       ({ identifier, uuid, minor, major }) => {
-        alert('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
+        console.log('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionExitDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier, uuid, minor, major, time }]) });
       }

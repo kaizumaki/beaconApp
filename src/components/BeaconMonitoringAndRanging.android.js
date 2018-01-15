@@ -3,7 +3,7 @@ import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
 import moment from 'moment';
 
-const TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
+const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
 export default class BeaconMonitoringAndRanging extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.state = {
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
-      identifier: 'some id',
+      identifier: 'Kaizumaki Nefry Beacon',
 
       rangingDataSource    : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
@@ -91,7 +91,6 @@ export default class BeaconMonitoringAndRanging extends Component {
   componentWillUnmount() {
     const { uuid, identifier } = this.state;
     const region = { identifier, uuid };
-
     // stop ranging beacons:
     Beacons
     .stopRangingBeaconsInRegion(identifier, uuid)
