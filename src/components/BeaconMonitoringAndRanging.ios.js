@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
 import Beacons  from 'react-native-beacons-manager';
 import moment   from 'moment';
+import firebase from 'react-native-firebase';
 
 const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
@@ -17,6 +18,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     authStateDidRangeEvent = null;
 
     this.state = {
+      isAuthenticated: false,
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
       identifier: 'Kaizumaki Nefry Beacon',
@@ -64,14 +66,20 @@ export default class BeaconMonitoringAndRanging extends Component {
   }
 
   componentDidMount() {
-    //
-    // component state aware here - attach events
-    //
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      });
 
     // Ranging event
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
+        // if (this.state.isAuthenticated) {
+        //   firebase.database().set(data);
+        // }
         console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
