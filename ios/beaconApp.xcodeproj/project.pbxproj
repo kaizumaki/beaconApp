@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,6 +38,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* beaconAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* beaconAppTests.m */; };
 		4491FC594C364A248112F8D4 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CA939BCAAF4B96928F635C /* Roboto.ttf */; };
 		490ECDAFCEF443B5891AEC06 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 524001668363444BA2484383 /* Roboto_medium.ttf */; };
+		4A18C1F1200F9EDA0016922A /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A18C135200F7B290016922A /* libRNFirebase.a */; };
+		4A18C1F3200F9F680016922A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A18C1F2200F9F680016922A /* GoogleService-Info.plist */; };
+		4A18C1F4200FA57B0016922A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
 		4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		4AD782B7200B06A400A7FDD0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A419D7B2009D721002A9A30 /* CoreLocation.framework */; };
 		4AE4315D200A6C88000BAEBC /* libRNiBeacon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AFE6F0F2008F70E0000A8F6 /* libRNiBeacon.a */; };
@@ -44,13 +48,14 @@
 		57AC8393CD694FA88A1DD009 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 503F6DB5E9EA44F793564F81 /* Octicons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		87DA32F104E5494C9E5C0083 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 12C82AB463F54CA7A5074992 /* rubicon-icon-font.ttf */; };
+		8E656212CDDA9929D73A6998 /* libPods-beaconApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C77E9FDF547A38BEAE040C3 /* libPods-beaconApp.a */; };
+		9382430FB23A69221D53449A /* libPods-beaconAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E04CC0A5B43821487ABC931 /* libPods-beaconAppTests.a */; };
 		9A7D6D41BBB54C56BABE1439 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF468A79C5544D6A8574BDB3 /* Entypo.ttf */; };
 		A7C2BBAA16CC41C794973A16 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEAE940682334CFB80D83502 /* Zocial.ttf */; };
 		A83CA311B863408A94E2D07E /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC89B5300A154A018ED60919 /* SimpleLineIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		D03CBF2F571449C0A94ADD58 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB7C35A918D941F3B91D55BA /* Ionicons.ttf */; };
 		F6A59AAD03AA4CB1AD0A6CEE /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FF8308E59184B838DD27378 /* EvilIcons.ttf */; };
-		2A24E321589C40818BA92FA6 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F947CD139B24CC68D41184F /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,6 +241,13 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		4A18C134200F7B290016922A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E001DA0A77154B4B926F3BEE /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
 		4A90AAFB20063A7D00476E74 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -361,16 +373,23 @@
 		2D02E47B1E0B4A5D006451C7 /* beaconApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "beaconApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* beaconApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "beaconApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3472AA310C6040DCB7F7F3EF /* Pods-beaconApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-beaconApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-beaconApp/Pods-beaconApp.release.xcconfig"; sourceTree = "<group>"; };
+		4A18C1F2200F9F680016922A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "beaconApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4A419D7B2009D721002A9A30 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4AFE6F10200903D60000A8F6 /* beaconApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = beaconApp.entitlements; path = beaconApp/beaconApp.entitlements; sourceTree = "<group>"; };
+		4C77E9FDF547A38BEAE040C3 /* libPods-beaconApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-beaconApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		503F6DB5E9EA44F793564F81 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		5193F2F1A45B4DFC81FEC208 /* libRNiBeacon.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNiBeacon.a; sourceTree = "<group>"; };
 		524001668363444BA2484383 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
+		5A0E1B35EBE709FEADA72B70 /* Pods-beaconApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-beaconApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-beaconApp/Pods-beaconApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5BC6C39E08AF4EBB817BA15A /* RNiBeacon.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNiBeacon.xcodeproj; path = "../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7FF8308E59184B838DD27378 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		85B0345585E8BA95D57AC8E9 /* libPods-beaconApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-beaconApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		880CE2F49A08077AE730333D /* libPods-beaconApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-beaconApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89C0DC1A2C1052EF73B90096 /* Pods-beaconAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-beaconAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-beaconAppTests/Pods-beaconAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E04CC0A5B43821487ABC931 /* libPods-beaconAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-beaconAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D2181ABD62049A4A15B6532 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		AC89B5300A154A018ED60919 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
@@ -378,9 +397,9 @@
 		BF468A79C5544D6A8574BDB3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		CEAE940682334CFB80D83502 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		DBF753CC6102409BBCE6FCA8 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		E001DA0A77154B4B926F3BEE /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
+		F0EEB0226AECDDDD781CA6AF /* Pods-beaconAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-beaconAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-beaconAppTests/Pods-beaconAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F8CA939BCAAF4B96928F635C /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
-		E001DA0A77154B4B926F3BEE /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; name = "RNFirebase.xcodeproj"; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		3F947CD139B24CC68D41184F /* libRNFirebase.a */ = {isa = PBXFileReference; name = "libRNFirebase.a"; path = "libRNFirebase.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -389,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				9382430FB23A69221D53449A /* libPods-beaconAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +416,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A18C1F1200F9EDA0016922A /* libRNFirebase.a in Frameworks */,
 				4AD782B7200B06A400A7FDD0 /* CoreLocation.framework in Frameworks */,
 				4AE4315D200A6C88000BAEBC /* libRNiBeacon.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -410,7 +431,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				2A24E321589C40818BA92FA6 /* libRNFirebase.a in Frameworks */,
+				8E656212CDDA9929D73A6998 /* libPods-beaconApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFE6F10200903D60000A8F6 /* beaconApp.entitlements */,
+				4A18C1F2200F9F680016922A /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -561,16 +583,20 @@
 			children = (
 				4A419D7B2009D721002A9A30 /* CoreLocation.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				4C77E9FDF547A38BEAE040C3 /* libPods-beaconApp.a */,
+				880CE2F49A08077AE730333D /* libPods-beaconApp-tvOS.a */,
+				85B0345585E8BA95D57AC8E9 /* libPods-beaconApp-tvOSTests.a */,
+				8E04CC0A5B43821487ABC931 /* libPods-beaconAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4AFE6EE52008F7050000A8F6 /* Recovered References */ = {
+		4A18C131200F7B290016922A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5193F2F1A45B4DFC81FEC208 /* libRNiBeacon.a */,
+				4A18C135200F7B290016922A /* libRNFirebase.a */,
 			);
-			name = "Recovered References";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		4AFE6F0B2008F7090000A8F6 /* Products */ = {
@@ -638,7 +664,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D1E86378B77F430280E7B32C /* Resources */,
-				4AFE6EE52008F7050000A8F6 /* Recovered References */,
+				C20AAACD30B2CA3761259D27 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -663,6 +689,17 @@
 				2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C20AAACD30B2CA3761259D27 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A0E1B35EBE709FEADA72B70 /* Pods-beaconApp.debug.xcconfig */,
+				3472AA310C6040DCB7F7F3EF /* Pods-beaconApp.release.xcconfig */,
+				F0EEB0226AECDDDD781CA6AF /* Pods-beaconAppTests.debug.xcconfig */,
+				89C0DC1A2C1052EF73B90096 /* Pods-beaconAppTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D1E86378B77F430280E7B32C /* Resources */ = {
@@ -691,9 +728,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "beaconAppTests" */;
 			buildPhases = (
+				C43E0DFF59993A65CC04B2A7 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				F33661053D3E629A9CE686B5 /* [CP] Embed Pods Frameworks */,
+				C4EFCF39ABC3FBF7E874C52F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -709,10 +749,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "beaconApp" */;
 			buildPhases = (
+				B3913B020ABACB7BA54DC7D0 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				45CC676C62B2BA4316A5D1EF /* [CP] Embed Pods Frameworks */,
+				36480E7DD60D95EF75D1ADDC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -856,6 +899,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 4A18C131200F7B290016922A /* Products */;
+					ProjectRef = E001DA0A77154B4B926F3BEE /* RNFirebase.xcodeproj */;
 				},
 				{
 					ProductGroup = 4AFE6F0B2008F7090000A8F6 /* Products */;
@@ -1041,6 +1088,13 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		4A18C135200F7B290016922A /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = 4A18C134200F7B290016922A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		4A90AAFC20063A7D00476E74 /* libjsinspector.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1153,8 +1207,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A18C1F4200FA57B0016922A /* Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				4A18C1F3200F9F680016922A /* GoogleService-Info.plist in Resources */,
 				9A7D6D41BBB54C56BABE1439 /* Entypo.ttf in Resources */,
 				F6A59AAD03AA4CB1AD0A6CEE /* EvilIcons.ttf in Resources */,
 				1B37F3B8773A40DDA5A3C945 /* FontAwesome.ttf in Resources */,
@@ -1215,6 +1271,102 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		36480E7DD60D95EF75D1ADDC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-beaconApp/Pods-beaconApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45CC676C62B2BA4316A5D1EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-beaconApp/Pods-beaconApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3913B020ABACB7BA54DC7D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-beaconApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C43E0DFF59993A65CC04B2A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-beaconAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4EFCF39ABC3FBF7E874C52F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-beaconAppTests/Pods-beaconAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F33661053D3E629A9CE686B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-beaconAppTests/Pods-beaconAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1283,6 +1435,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0EEB0226AECDDDD781CA6AF /* Pods-beaconAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1292,7 +1445,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
 				);
 				INFOPLIST_FILE = beaconAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1314,13 +1467,14 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 89C0DC1A2C1052EF73B90096 /* Pods-beaconAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
 				);
 				INFOPLIST_FILE = beaconAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1342,6 +1496,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A0E1B35EBE709FEADA72B70 /* Pods-beaconApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1350,37 +1505,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
-				);
-				INFOPLIST_FILE = beaconApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.kaizumaki.beaconApp;
-				PRODUCT_NAME = beaconApp;
-				SDKROOT = iphoneos11.2;
-				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
-				VALID_ARCHS = "arm64 armv7 armv7s";
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		13B07F951A680F5B00A75B9A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 56PT67EH6S;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
 				);
 				INFOPLIST_FILE = beaconApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1393,7 +1518,38 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.kaizumaki.beaconApp;
 				PRODUCT_NAME = beaconApp;
-				SDKROOT = iphoneos11.2;
+				SDKROOT = iphoneos;
+				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
+				VALID_ARCHS = "arm64 armv7 armv7s";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3472AA310C6040DCB7F7F3EF /* Pods-beaconApp.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 56PT67EH6S;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
+				);
+				INFOPLIST_FILE = beaconApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.kaizumaki.beaconApp;
+				PRODUCT_NAME = beaconApp;
+				SDKROOT = iphoneos;
 				TREAT_MISSING_BASELINES_AS_TEST_FAILURES = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1415,7 +1571,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
 				);
 				INFOPLIST_FILE = "beaconApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1451,7 +1607,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-beacons-manager/ios/RNiBeacon/RNiBeacon",
-					"$(SRCROOT)\..\node_modules\react-native-firebase\ios\RNFirebase/**",
+					"$(SRCROOT)..\node_modules\neact-native-firebaseiosRNFirebase/**",
 				);
 				INFOPLIST_FILE = "beaconApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
