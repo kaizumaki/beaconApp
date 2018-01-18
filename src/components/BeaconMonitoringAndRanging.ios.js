@@ -81,7 +81,7 @@ export default class BeaconMonitoringAndRanging extends Component {
       (data) => {
         if (this.state.isAuthenticated) {
           this.setState({
-            updates: { proximity: data.beacons.proximity },
+            updates: { proximity: data.beacons.map((obj) => { return obj.proximity }) },
           });
           firebase.database().ref().update(this.state.updates);
         }
