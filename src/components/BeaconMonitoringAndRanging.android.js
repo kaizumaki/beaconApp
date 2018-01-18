@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
+import { Text, View, ListView, DeviceEventEmitter, Button } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
 import moment from 'moment';
+import firebase from 'react-native-firebase';
 
 const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
@@ -17,13 +18,16 @@ export default class BeaconMonitoringAndRanging extends Component {
     beaconsDidRangeEvent = null;
 
     this.state = {
+      isAuthenticated: false,
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
       identifier: 'Kaizumaki Nefry Beacon',
 
       rangingDataSource    : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
-      regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([])
+      regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
+
+      updates: { proximity: '' },
     };
   }
 
@@ -55,21 +59,39 @@ export default class BeaconMonitoringAndRanging extends Component {
   }
 
   componentDidMount() {
-    //
-    // component state aware here - attach events
-    //
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      });
+
+    this.firebaseDatabaseTest = () => {
+      if (this.state.isAuthenticated) {
+        this.setState({
+          updates: { proximity: 'ccccc' },
+        });
+        firebase.database().ref().update(this.state.updates);
+      }
+    }
 
     // Ranging:
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
+        if (this.state.isAuthenticated) {
+          this.setState({
+            updates: { proximity: data.beacons.proximity },
+          });
+          firebase.database().ref().update(this.state.updates);
+        }
         console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
     );
 
     // monitoring:
-    this.beaconsDidEnterEvent = DeviceEventEmitter.addListener(
+    this.regionDidEnterEvent = DeviceEventEmitter.addListener(
       'regionDidEnter',
       ({ identifier, uuid, minor, major }) => {
         console.log('monitoring - regionDidEnter data: ', { identifier, uuid, minor, major });
@@ -115,6 +137,11 @@ export default class BeaconMonitoringAndRanging extends Component {
 
     return (
       <View>
+        <Button
+          onPress={this.firebaseDatabaseTest}
+          title="Firebase Test"
+          color="#841584"
+        />
         <Text>
           ranging beacons in the area:
         </Text>

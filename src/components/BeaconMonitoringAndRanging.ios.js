@@ -25,7 +25,9 @@ export default class BeaconMonitoringAndRanging extends Component {
 
       rangingDataSource    : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
-      regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([])
+      regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
+
+      updates: { proximity: '' },
     };
   }
 
@@ -77,9 +79,12 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        // if (this.state.isAuthenticated) {
-        //   firebase.database().set(data);
-        // }
+        if (this.state.isAuthenticated) {
+          this.setState({
+            updates: { proximity: data.beacons.proximity },
+          });
+          firebase.database().ref().update(this.state.updates);
+        }
         console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
