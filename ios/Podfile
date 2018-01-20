@@ -9,6 +9,7 @@ target 'beaconApp' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Firebase/Messaging'
 
   target 'beaconAppTests' do
     inherit! :search_paths

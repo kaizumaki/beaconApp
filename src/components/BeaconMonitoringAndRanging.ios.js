@@ -68,6 +68,7 @@ export default class BeaconMonitoringAndRanging extends Component {
   }
 
   componentDidMount() {
+    firebase.messaging().setBadgeNumber(0);
     firebase.auth().signInAnonymously()
       .then(() => {
         this.setState({
