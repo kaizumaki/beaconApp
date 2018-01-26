@@ -7,7 +7,7 @@ target 'beaconApp' do
 
   # Pods for beaconApp
   pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
 

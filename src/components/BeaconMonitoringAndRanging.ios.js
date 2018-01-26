@@ -17,8 +17,10 @@ export default class BeaconMonitoringAndRanging extends Component {
     // will be set as a reference to "authorizationStatusDidChange" event:
     authStateDidRangeEvent = null;
 
+    const user = firebase.auth().currentUser;
+    this.ref = firebase.firestore().collection('users').doc(user.uid);
+
     this.state = {
-      isAuthenticated: false,
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
       identifier: 'Kaizumaki Nefry Beacon',
@@ -69,23 +71,15 @@ export default class BeaconMonitoringAndRanging extends Component {
 
   componentDidMount() {
     firebase.messaging().setBadgeNumber(0);
-    firebase.auth().signInAnonymously()
-      .then(() => {
-        this.setState({
-          isAuthenticated: true,
-        });
-      });
 
     // Ranging event
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        if (this.state.isAuthenticated) {
-          this.setState({
-            updates: { proximity: data.beacons.map((obj) => { return obj.proximity }) },
-          });
-          firebase.database().ref().update(this.state.updates);
-        }
+        this.setState({
+          updates: { proximity: data.beacons.map((obj) => obj.proximity) },
+        });
+        this.ref.set(this.state.updates, { merge: true });
         console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }

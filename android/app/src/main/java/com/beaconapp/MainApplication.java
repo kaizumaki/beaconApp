@@ -5,7 +5,7 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
-import io.invertase.firebase.database.RNFirebaseDatabasePackage;
+import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import com.mackentoch.beaconsandroid.BeaconsAndroidPackage;
 import com.facebook.react.ReactNativeHost;
@@ -30,7 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
           new RNFirebasePackage(),
           new RNFirebaseAuthPackage(),
-          new RNFirebaseDatabasePackage(),
+          new RNFirebaseFirestorePackage(),
           new RNFirebaseMessagingPackage(),
           new BeaconsAndroidPackage()
       );

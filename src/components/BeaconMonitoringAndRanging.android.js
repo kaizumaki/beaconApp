@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import React, { Component } from 'react';
 import { Text, View, ListView, DeviceEventEmitter, Button } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
@@ -17,8 +18,10 @@ export default class BeaconMonitoringAndRanging extends Component {
     // will be set as a reference to "beaconsDidRange" event:
     beaconsDidRangeEvent = null;
 
+    const user = firebase.auth().currentUser;
+    this.ref = firebase.firestore().collection('users').doc(user.uid);
+
     this.state = {
-      isAuthenticated: false,
       // region information
       uuid: '6FAD7AFB-079E-4F42-8574-5DF2633B03CB',
       identifier: 'Kaizumaki Nefry Beacon',
@@ -27,7 +30,7 @@ export default class BeaconMonitoringAndRanging extends Component {
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
 
-      updates: { proximity: '' },
+      proximity: '',
     };
   }
 
@@ -59,33 +62,22 @@ export default class BeaconMonitoringAndRanging extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().signInAnonymously()
-      .then(() => {
-        this.setState({
-          isAuthenticated: true,
-        });
-      });
-
     this.firebaseDatabaseTest = () => {
-      if (this.state.isAuthenticated) {
-        this.setState({
-          updates: { proximity: 'ccccc' },
-        });
-        firebase.database().ref().update(this.state.updates);
-      }
+      this.setState({
+        proximity: 'aaaaa',
+      });
+      this.ref.update({ proximity: this.state.proximity });
     }
 
     // Ranging:
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        if (this.state.isAuthenticated) {
-          this.setState({
-            updates: { proximity: data.beacons.map((obj) => { return obj.proximity }) },
-          });
-          firebase.database().ref().update(this.state.updates);
-        }
-        console.log('beaconsDidRange data: ', data);
+        // this.setState({
+        //   updates: { proximity: data.beacons.map((obj) => obj.proximity) },
+        // });
+        // this.ref.set(this.state.updates, { merge: true });
+        // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
     );
@@ -138,7 +130,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     return (
       <View>
         <Button
-          onPress={this.firebaseDatabaseTest}
+          onPress={() => this.firebaseDatabaseTest()}
           title="Firebase Test"
           color="#841584"
         />
