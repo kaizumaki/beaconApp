@@ -30,6 +30,7 @@ export default class BeaconMonitoringAndRanging extends Component {
       regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
 
       updates: { proximity: '' },
+      proximity: '',
     };
   }
 
@@ -79,7 +80,9 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({
           updates: { proximity: data.beacons.map((obj) => obj.proximity) },
         });
-        this.doc.update(this.state.updates);
+        setTimeout(() => {
+          this.doc.update({ proximity: this.state.proximity });
+        }, 5000);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
@@ -89,7 +92,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidEnterEvent = DeviceEventEmitter.addListener(
       'regionDidEnter',
       (data) => {
-        console.log('monitoring - regionDidEnter data: ', data);
+        // console.log('monitoring - regionDidEnter data: ', data);
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionEnterDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier:data.identifier, uuid:data.uuid, minor:data.minor, major:data.major, time }]) });
       }
@@ -98,11 +101,39 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidExitEvent = DeviceEventEmitter.addListener(
       'regionDidExit',
       ({ identifier, uuid, minor, major }) => {
-        console.log('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
+        // console.log('monitoring - regionDidExit data: ', { identifier, uuid, minor, major });
         const time = moment().format(TIME_FORMAT);
         this.setState({ regionExitDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier, uuid, minor, major, time }]) });
       }
     );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.updates.proximity[0] === 'immediate') {
+      setTimeout(() => {
+        if (this.state.updates.proximity[0] !== 'immediate') {
+          this.setState({
+            proximity: prevState.updates.proximity[0],
+          });
+        } else {
+          this.setState({
+            proximity: this.state.updates.proximity[0],
+          });
+        }
+      }, 2000);
+    } else if (prevState.updates.proximity[0] !== 'immediate') {
+      setTimeout(() => {
+        if (this.state.updates.proximity[0] === 'immediate') {
+          this.setState({
+            proximity: this.state.updates.proximity[0],
+          });
+        } else {
+          this.setState({
+            proximity: prevState.updates.proximity[0],
+          });
+        }
+      }, 2000);
+    }
   }
 
   componentWillUnmount() {
