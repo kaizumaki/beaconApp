@@ -30,7 +30,7 @@ export default class BeaconMonitoringAndRanging extends Component {
       regionEnterDatasource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
       regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
 
-      proximity: '',
+      updates: { proximity: '' },
     };
   }
 
@@ -64,19 +64,19 @@ export default class BeaconMonitoringAndRanging extends Component {
   componentDidMount() {
     this.firebaseDatabaseTest = () => {
       this.setState({
-        proximity: 'aaaaa',
+        updates: { proximity: 'aaaaa' },
       });
-      this.ref.update({ proximity: this.state.proximity });
+      this.ref.update(this.state.updates);
     }
 
     // Ranging:
     this.beaconsDidRangeEvent = DeviceEventEmitter.addListener(
       'beaconsDidRange',
       (data) => {
-        // this.setState({
-        //   updates: { proximity: data.beacons.map((obj) => obj.proximity) },
-        // });
-        // this.ref.set(this.state.updates, { merge: true });
+        this.setState({
+          updates: { proximity: data.beacons.map((obj) => obj.proximity) },
+        });
+        this.ref.update(this.state.updates);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
@@ -130,7 +130,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     return (
       <View>
         <Button
-          onPress={() => this.firebaseDatabaseTest()}
+          onPress={() => { this.firebaseDatabaseTest(); }}
           title="Firebase Test"
           color="#841584"
         />

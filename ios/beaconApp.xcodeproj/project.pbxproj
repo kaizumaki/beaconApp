@@ -40,7 +40,7 @@
 		490ECDAFCEF443B5891AEC06 /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 524001668363444BA2484383 /* Roboto_medium.ttf */; };
 		4A18C1F3200F9F680016922A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A18C1F2200F9F680016922A /* GoogleService-Info.plist */; };
 		4A18C1F4200FA57B0016922A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
-		4A1E7740201367600070F234 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A18C135200F7B290016922A /* libRNFirebase.a */; };
+		4A1ADFA0201C1AF600F03A87 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A18C135200F7B290016922A /* libRNFirebase.a */; };
 		4A1E774120136AA80070F234 /* libPods-beaconApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1E774220136AA80070F234 /* libPods-beaconApp.a */; };
 		4A90AB0B2006417800476E74 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		4AD782B7200B06A400A7FDD0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A419D7B2009D721002A9A30 /* CoreLocation.framework */; };
@@ -417,8 +417,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A1ADFA0201C1AF600F03A87 /* libRNFirebase.a in Frameworks */,
 				4A1E774120136AA80070F234 /* libPods-beaconApp.a in Frameworks */,
-				4A1E7740201367600070F234 /* libRNFirebase.a in Frameworks */,
 				4AD782B7200B06A400A7FDD0 /* CoreLocation.framework in Frameworks */,
 				4AE4315D200A6C88000BAEBC /* libRNiBeacon.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -1283,9 +1283,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-beaconApp/Pods-beaconApp-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/gRPC/gRPCCertificates.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
