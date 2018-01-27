@@ -19,7 +19,7 @@ export default class BeaconMonitoringAndRanging extends Component {
     beaconsDidRangeEvent = null;
 
     const user = firebase.auth().currentUser;
-    this.ref = firebase.firestore().collection('users').doc(user.uid);
+    this.doc = firebase.firestore().collection('users').doc(user.uid);
 
     this.state = {
       // region information
@@ -66,7 +66,7 @@ export default class BeaconMonitoringAndRanging extends Component {
       this.setState({
         updates: { proximity: 'aaaaa' },
       });
-      this.ref.update(this.state.updates);
+      this.doc.update(this.state.updates);
     }
 
     // Ranging:
@@ -76,7 +76,7 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({
           updates: { proximity: data.beacons.map((obj) => obj.proximity) },
         });
-        this.ref.update(this.state.updates);
+        this.doc.update(this.state.updates);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }

@@ -6,10 +6,14 @@ import { Actions } from 'react-native-router-flux';
 export default class Login extends Component {
   constructor() {
     super();
+
+    this.ref = firebase.firestore().collection('users');
+
     this.state = {
       email: '',
       password: '',
       userId: '',
+      token: '',
     };
   }
 
@@ -17,10 +21,24 @@ export default class Login extends Component {
     this.authSubscription = firebase.auth().onAuthStateChanged((user) => {
       if(user) {
         this.setState({
+          email: user.email,
           userId: user.uid,
         });
         Actions.mainPage();
       }
+    });
+
+    firebase.messaging().getToken()
+      .then((token) => {
+        this.setState({
+          token: token,
+        });
+      });
+
+    firebase.messaging().onTokenRefresh((token) => {
+      this.setState({
+        token: token,
+      });
     });
   }
 
@@ -31,22 +49,20 @@ export default class Login extends Component {
   onRegister() {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        firebase.messaging().getToken()
-          .then((token) => {
-            firebase.firestore().collection('users').doc(user.uid).set({
-              proximity: '',
-              token: token
-            });
-          })
-          .then(() => {
-            Actions.mainPage();
-          });
+        this.ref.doc(user.uid).set({
+          proximity: '',
+          token: this.state.token,
+        });
+        Actions.mainPage();
       });
   }
 
   onLogin() {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
+      .then((user) => {
+        this.ref.doc(user.uid).update({
+          token: this.state.token,
+        });
         Actions.mainPage();
       });
   }
