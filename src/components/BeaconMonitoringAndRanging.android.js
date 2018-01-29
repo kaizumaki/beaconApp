@@ -4,6 +4,7 @@ import { Text, View, ListView, DeviceEventEmitter, Button } from 'react-native';
 import Beacons from 'react-native-beacons-manager';
 import moment from 'moment';
 import firebase from 'react-native-firebase';
+import _ from 'lodash';
 
 const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
@@ -32,6 +33,8 @@ export default class BeaconMonitoringAndRanging extends Component {
 
       updates: { proximity: '' },
     };
+
+    this.updateData = _.throttle(this.updateData, 5000);
   }
 
   componentWillMount(){
@@ -76,7 +79,7 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({
           updates: { proximity: data.beacons.map((obj) => obj.proximity) },
         });
-        this.doc.update(this.state.updates);
+        this.updateData(this.state.updates);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
@@ -122,6 +125,10 @@ export default class BeaconMonitoringAndRanging extends Component {
     // remove beacons events we registered at componentDidMount
     this.regionDidEnterEvent.remove();
     this.regionDidExitEvent.remove();
+  }
+
+  updateData(data) {
+    this.doc.update(data);
   }
 
   render() {

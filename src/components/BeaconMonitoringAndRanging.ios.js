@@ -3,6 +3,7 @@ import { Text, View, ListView, DeviceEventEmitter } from 'react-native';
 import Beacons  from 'react-native-beacons-manager';
 import moment   from 'moment';
 import firebase from 'react-native-firebase';
+import _ from 'lodash';
 
 const TIME_FORMAT = 'YYYY/MM/DD HH:mm:ss';
 
@@ -30,8 +31,9 @@ export default class BeaconMonitoringAndRanging extends Component {
       regionExitDatasource : new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }).cloneWithRows([]),
 
       updates: { proximity: '' },
-      proximity: '',
     };
+
+    this.updateData = _.throttle(this.updateData, 5000);
   }
 
   componentWillMount(){
@@ -80,9 +82,7 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({
           updates: { proximity: data.beacons.map((obj) => obj.proximity) },
         });
-        setTimeout(() => {
-          this.doc.update({ proximity: this.state.proximity });
-        }, 5000);
+        this.updateData(this.state.updates);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
@@ -108,34 +108,6 @@ export default class BeaconMonitoringAndRanging extends Component {
     );
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.updates.proximity[0] === 'immediate') {
-      setTimeout(() => {
-        if (this.state.updates.proximity[0] !== 'immediate') {
-          this.setState({
-            proximity: prevState.updates.proximity[0],
-          });
-        } else {
-          this.setState({
-            proximity: this.state.updates.proximity[0],
-          });
-        }
-      }, 2000);
-    } else if (prevState.updates.proximity[0] !== 'immediate') {
-      setTimeout(() => {
-        if (this.state.updates.proximity[0] === 'immediate') {
-          this.setState({
-            proximity: this.state.updates.proximity[0],
-          });
-        } else {
-          this.setState({
-            proximity: prevState.updates.proximity[0],
-          });
-        }
-      }, 2000);
-    }
-  }
-
   componentWillUnmount() {
     const { identifier, uuid } = this.state;
     const region = { identifier, uuid };
@@ -158,6 +130,10 @@ export default class BeaconMonitoringAndRanging extends Component {
     this.regionDidExitEvent.remove();
     // remove ranging event we registered at componentDidMount
     this.beaconsDidRangeEvent.remove();
+  }
+
+  updateData(data) {
+    this.doc.update(data);
   }
 
   render() {

@@ -10,6 +10,7 @@
     "android": "react-native run-android"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "native-base": "^2.3.6",
     "react": "16.2.0",
