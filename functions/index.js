@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase);
 exports.updateProximity = functions.firestore.document('users/{userId}').onWrite((event) => {
   const newValue = event.data.data();
   const previousValue = event.data.previous.data();
-  const proximity = newValue.proximity;
+  const proximity = newValue.proximity[0];
   const token = newValue.token;
   console.log('newValue', newValue);
   console.log('previousValue', previousValue);
@@ -18,9 +18,20 @@ exports.updateProximity = functions.firestore.document('users/{userId}').onWrite
       body: 'push通知のテストです。',
       badge: '1',
       sound: 'default',
-    },
-    priority: 'high',
+      content_available: 'true',
+    }
   };
-  if (proximity !== 'ccccc') return false;
-  return admin.messaging().sendToDevice(token, payload);
+
+  const options = {
+    priority: 'high',
+    timeToLive: 60 * 60 * 24
+  };
+
+  if (proximity !== 'immediate') return false;
+  return admin.messaging().sendToDevice(token, payload, options).then((response) => {
+      return console.log("Successfully sent message:", response);
+    })
+    .catch((error) => {
+      return console.log("Error sending message:", error);
+    });
 });
