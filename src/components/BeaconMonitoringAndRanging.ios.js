@@ -82,7 +82,6 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({
           updates: { proximity: data.beacons.map((obj) => obj.proximity) },
         });
-        this.updateData(this.state.updates);
         // console.log('beaconsDidRange data: ', data);
         this.setState({ rangingDataSource: this.state.rangingDataSource.cloneWithRows(data.beacons) });
       }
@@ -106,6 +105,10 @@ export default class BeaconMonitoringAndRanging extends Component {
         this.setState({ regionExitDatasource: this.state.rangingDataSource.cloneWithRows([{ identifier, uuid, minor, major, time }]) });
       }
     );
+  }
+
+  componentDidUpdate() {
+    this.updateData(this.state.updates);
   }
 
   componentWillUnmount() {
