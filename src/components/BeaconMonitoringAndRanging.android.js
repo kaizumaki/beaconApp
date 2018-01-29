@@ -66,7 +66,7 @@ export default class BeaconMonitoringAndRanging extends Component {
   componentDidMount() {
     this.firebaseDatabaseTest = () => {
       this.setState({
-        updates: { proximity: 'aaaaa' },
+        updates: { proximity: 'ccccc' },
       });
     }
 
